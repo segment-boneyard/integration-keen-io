@@ -1,8 +1,8 @@
-[![Build Status](https://circleci.com/gh/segmentio/integration-keen-io.png)](https://circleci.com/gh/segmentio/integration-keen-io)
+[![Build Status](https://circleci.com/gh/segmentio/integration-keen-io/tree/master.png?style=badge)](https://circleci.com/gh/segmentio/integration-keen-io/tree/master)
 
-# Keen IO server-side integration.
+# integration-keen-io
 
-Write me...
+Keen IO server-side integration for Segment.
 
 
 ## License
