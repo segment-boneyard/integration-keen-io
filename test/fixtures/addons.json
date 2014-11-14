@@ -1,0 +1,50 @@
+{
+  "settings": {
+    "uaAddon": true,
+    "urlAddon": true,
+    "ipAddon": true
+  },
+  "input": {
+    "userId": "user-id",
+    "event": "my-event",
+    "type": "track",
+    "timestamp": "2014",
+    "properties": {
+      "url": "https://segment.io/docs"
+    },
+    "context": {
+      "userAgent": "user-agent",
+      "ip": "0.0.0.0"
+    }
+  },
+  "output": {
+    "my-event": [{
+      "userId": "user-id",
+      "ip_address": "0.0.0.0",
+      "user_agent": "user-agent",
+      "page_url": "https://segment.io/docs",
+      "url": "https://segment.io/docs",
+      "traits": {},
+      "keen": {
+        "timestamp": "2014-01-01T00:00:00.000Z",
+        "addons": [
+          {
+            "name": "keen:ip_to_geo",
+            "input": { "ip": "ip_address" },
+            "output": "ip_geo_info"
+          },
+          {
+            "name": "keen:ua_parser",
+            "input": { "ua_string": "user_agent" },
+            "output": "parsed_user_agent"
+          },
+          {
+            "name": "keen:url_parser",
+            "input": { "url": "page_url" },
+            "output": "parsed_page_url"
+          }
+        ]
+      }
+    }]
+  }
+}

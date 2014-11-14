@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "uaAddon": true,
+    "urlAddon": true,
+    "ipAddon": true
+  },
+  "input": {
+    "userId": "user-id",
+    "event": "my-event",
+    "type": "track",
+    "timestamp": "2014"
+  },
+  "output": {
+    "my-event": [{
+      "userId": "user-id",
+      "traits": {},
+      "keen": {
+        "timestamp": "2014-01-01T00:00:00.000Z",
+        "addons": []
+      }
+    }]
+  }
+}
