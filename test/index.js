@@ -26,8 +26,7 @@ describe('Keen IO', function () {
       .endpoint('https://api.keen.io/3.0')
       .ensure('settings.projectId')
       .ensure('settings.writeKey')
-      .channels(['server'])
-      .retries(2);
+      .channels(['server']);
   });
 
   describe('.validate()', function () {
