@@ -148,10 +148,28 @@ describe('Keen IO', function () {
   });
 
   describe('.screen()', function () {
-    it('should screen correctly', function (done) {
+    it('should be able to track all screens', function (done) {
+      var json = test.fixture('screen-all');
+      json.output['Loaded a Screen'][0].keen.timestamp = new Date(json.output['Loaded a Screen'][0].keen.timestamp);
       test
         .set(settings)
-        .screen(helpers.screen())
+        .set(json.settings)
+        .screen(json.input)
+        .query('api_key', settings.writeKey)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should be able to track named screens', function (done) {
+      var json = test.fixture('screen-named');
+      json.output['Viewed Home Screen'][0].keen.timestamp = new Date(json.output['Viewed Home Screen'][0].keen.timestamp);
+      test
+        .set(settings)
+        .set(json.settings)
+        .screen(json.input)
+        .query('api_key', settings.writeKey)
+        .sends(json.output)
         .expects(200)
         .end(done);
     });
