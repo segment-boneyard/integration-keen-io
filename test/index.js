@@ -14,7 +14,8 @@ describe('Keen IO', function () {
   beforeEach(function(){
     settings = {
       projectId: '5181bcd23843312d87000000',
-      writeKey: '6d5c9e2365324fa4a631e88cd4ce7df3ca4bf41e5a9a29e48c2dfb57408bb978f5d2e6d77424fa14c9d167c72d8e1d618c7eea178ecf5934dc8d456e0114ec81112f81e8df9507a31b7bfee9cbd00944f59d54f199f046263578ded79b62c33a435f17907bffae8fd8e109086eb53f1b'
+      writeKey: '6d5c9e2365324fa4a631e88cd4ce7df3ca4bf41e5a9a29e48c2dfb57408bb978f5d2e6d77424fa14c9d167c72d8e1d618c7eea178ecf5934dc8d456e0114ec81112f81e8df9507a31b7bfee9cbd00944f59d54f199f046263578ded79b62c33a435f17907bffae8fd8e109086eb53f1b',
+      trackNamedPages: true
     };
     keen = new KeenIO(settings);
     test = Test(keen, __dirname);
@@ -38,34 +39,6 @@ describe('Keen IO', function () {
     it('should be invalid when .writeKey is missing', function(){
       delete settings.writeKey;
       test.invalid({}, settings);
-    });
-
-    it('should be invalid when .sendPage is false', function(){
-      var msg = {
-        type: 'page',
-        name: 'Home',
-        userId: 'user-id',
-        timestamp: '2014',
-        properties: {
-          created: '2014-01-01',
-          prop: true
-        }
-      };
-      test.invalid(msg, settings);
-    });
-
-    it('should be invalid when .sendScreen is false', function(){
-      var msg = {
-        type: 'screen',
-        name: 'Login',
-        userId: 'user-id',
-        timestamp: '2014',
-        properties: {
-          created: '2014-01-01',
-          prop: true
-        }
-      };
-      test.invalid(msg, settings);
     });
 
     it('should be valid when .writeKey and .projectId are given', function(){
@@ -107,18 +80,6 @@ describe('Keen IO', function () {
         test.maps('addons');
       });
     });
-
-    describe('page', function(){
-      it('should map basic page', function(){
-        test.maps('page-basic');
-      });
-    });
-
-    describe('screen', function(){
-      it('should map basic screen', function(){
-        test.maps('screen-basic');
-      });
-    });
   });
 
   describe('.track()', function () {
@@ -139,10 +100,41 @@ describe('Keen IO', function () {
   });
 
   describe('.page()', function () {
-    it('should page correctly', function (done) {
+    it('should be able to track all pages', function (done) {
+      var json = test.fixture('page-all');
+      json.output['Loaded a Page'][0].keen.timestamp = new Date(json.output['Loaded a Page'][0].keen.timestamp);
       test
         .set(settings)
-        .page(helpers.page())
+        .set(json.settings)
+        .page(json.input)
+        .query('api_key', settings.writeKey)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should be able to track named pages', function (done) {
+      var json = test.fixture('page-named');
+      json.output['Viewed Home Page'][0].keen.timestamp = new Date(json.output['Viewed Home Page'][0].keen.timestamp);
+      test
+        .set(settings)
+        .set(json.settings)
+        .page(json.input)
+        .query('api_key', settings.writeKey)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should be able to track categorized pages', function (done) {
+      var json = test.fixture('page-categorized');
+      json.output['Viewed Docs Page'][0].keen.timestamp = new Date(json.output['Viewed Docs Page'][0].keen.timestamp);
+      test
+        .set(settings)
+        .set(json.settings)
+        .page(json.input)
+        .query('api_key', settings.writeKey)
+        .sends(json.output)
         .expects(200)
         .end(done);
     });
