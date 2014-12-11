@@ -40,6 +40,34 @@ describe('Keen IO', function () {
       test.invalid({}, settings);
     });
 
+    it('should be invalid when .sendPage is false', function(){
+      var msg = {
+        type: 'page',
+        name: 'Home',
+        userId: 'user-id',
+        timestamp: '2014',
+        properties: {
+          created: '2014-01-01',
+          prop: true
+        }
+      };
+      test.invalid(msg, settings);
+    });
+
+    it('should be invalid when .sendScreen is false', function(){
+      var msg = {
+        type: 'screen',
+        name: 'Login',
+        userId: 'user-id',
+        timestamp: '2014',
+        properties: {
+          created: '2014-01-01',
+          prop: true
+        }
+      };
+      test.invalid(msg, settings);
+    });
+
     it('should be valid when .writeKey and .projectId are given', function(){
       test.valid({}, settings);
     });
