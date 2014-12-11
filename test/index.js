@@ -79,6 +79,18 @@ describe('Keen IO', function () {
         test.maps('addons');
       });
     });
+
+    describe('page', function(){
+      it('should map basic page', function(){
+        test.maps('page-basic');
+      });
+    });
+
+    describe('screen', function(){
+      it('should map basic screen', function(){
+        test.maps('screen-basic');
+      });
+    });
   });
 
   describe('.track()', function () {
@@ -94,6 +106,40 @@ describe('Keen IO', function () {
       test
         .set({ writeKey: 'x' })
         .track(helpers.track())
+        .error(done);
+    });
+  });
+
+  describe('.page()', function () {
+    it('should page correctly', function (done) {
+      test
+        .set(settings)
+        .page(helpers.page())
+        .expects(200)
+        .end(done);
+    });
+
+    it('should error on invalid creds', function(done){
+      test
+        .set({ writeKey: 'x' })
+        .page(helpers.page())
+        .error(done);
+    });
+  });
+
+  describe('.screen()', function () {
+    it('should screen correctly', function (done) {
+      test
+        .set(settings)
+        .screen(helpers.screen())
+        .expects(200)
+        .end(done);
+    });
+
+    it('should error on invalid creds', function(done){
+      test
+        .set({ writeKey: 'x' })
+        .screen(helpers.screen())
         .error(done);
     });
   });
