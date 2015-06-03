@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "extend": "^2.0.0",
-    "segmentio-integration": "^3.0.5"
+    "segmentio-integration": "^3.0.5",
+    "batch": "^0.5.1"
   },
   "devDependencies": {
-    "batch": "^0.5.1",
     "istanbul": "0.x",
     "jscs": "1.x",
     "merge-util": "^0.1.0",
