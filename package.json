@@ -13,9 +13,9 @@
     "test": "make test"
   },
   "dependencies": {
+    "batch": "^0.5.1",
     "extend": "^2.0.0",
-    "segmentio-integration": "^3.0.5",
-    "batch": "^0.5.1"
+    "segmentio-integration": "^3.2.0"
   },
   "devDependencies": {
     "istanbul": "0.x",
