@@ -1,4 +1,13 @@
 
+1.0.7 / 2015-06-26
+==================
+
+  * deps: update segmentio-integration to 3.2
+  * Merge pull request #3 from usercycle/master
+  * move batch dependency from devDependencies to dependencies
+  * Update circle template
+
+
 1.0.6 / 2015-01-06
 ==================
 
