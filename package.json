@@ -15,6 +15,7 @@
   "dependencies": {
     "batch": "^0.5.1",
     "extend": "^2.0.0",
+    "obj-case": "^0.2.0",
     "segmentio-integration": "^3.2.0"
   },
   "devDependencies": {
