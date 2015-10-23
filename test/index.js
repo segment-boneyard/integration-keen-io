@@ -60,6 +60,10 @@ describe('Keen IO', function () {
         test.maps('traits');
       });
 
+      it('should respect props.keen object', function(){
+        test.maps('keen-props');
+      });
+
       it('should add ip addon when .ipAddon is `true`', function(){
         test.maps('ip-addon');
       });
