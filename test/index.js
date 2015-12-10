@@ -67,6 +67,10 @@ describe('Keen IO', function () {
       it('should add ip addon when .ipAddon is `true`', function(){
         test.maps('ip-addon');
       });
+      
+      it('should add referrer addon when .referrerAddon is `true`', function(){
+        test.maps('referrer-addon');
+      });
 
       it('should add user-agent addon when .uaAddon is `true`', function(){
         test.maps('user-agent-addon');
