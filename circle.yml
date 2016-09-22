@@ -4,6 +4,8 @@ machine:
   services:
     - docker
     - redis
+  environment:
+    VERSIONED: true
 
 dependencies:
   pre:
