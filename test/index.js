@@ -1,17 +1,15 @@
+'use strict';
 
 var Test = require('segmentio-integration-tester');
 var helpers = require('./helpers');
-var facade = require('segmentio-facade');
-var assert = require('assert');
-var should = require('should');
 var KeenIO = require('..');
 
-describe('Keen IO', function () {
+describe('Keen IO', function() {
   var settings;
   var keen;
   var test;
 
-  beforeEach(function(){
+  beforeEach(function() {
     settings = {
       projectId: '5181bcd23843312d87000000',
       writeKey: '6d5c9e2365324fa4a631e88cd4ce7df3ca4bf41e5a9a29e48c2dfb57408bb978f5d2e6d77424fa14c9d167c72d8e1d618c7eea178ecf5934dc8d456e0114ec81112f81e8df9507a31b7bfee9cbd00944f59d54f199f046263578ded79b62c33a435f17907bffae8fd8e109086eb53f1b',
@@ -21,7 +19,7 @@ describe('Keen IO', function () {
     test = Test(keen, __dirname);
   });
 
-  it('should have the correct settings', function(){
+  it('should have the correct settings', function() {
     test
       .name('Keen IO')
       .endpoint('https://api.keen.io/3.0')
@@ -30,68 +28,68 @@ describe('Keen IO', function () {
       .channels(['server']);
   });
 
-  describe('.validate()', function () {
-    it('should be invalid when .projectId is missing', function(){
+  describe('.validate()', function() {
+    it('should be invalid when .projectId is missing', function() {
       delete settings.projectId;
       test.invalid({}, settings);
     });
 
-    it('should be invalid when .writeKey is missing', function(){
+    it('should be invalid when .writeKey is missing', function() {
       delete settings.writeKey;
       test.invalid({}, settings);
     });
 
-    it('should be valid when .writeKey and .projectId are given', function(){
+    it('should be valid when .writeKey and .projectId are given', function() {
       test.valid({}, settings);
     });
   });
 
-  describe('mapper', function(){
-    describe('track', function(){
-      it('should map basic track message', function(){
+  describe('mapper', function() {
+    describe('track', function() {
+      it('should map basic track message', function() {
         test.maps('basic');
       });
 
-      it('should fallback to .anonymousId', function(){
+      it('should fallback to .anonymousId', function() {
         test.maps('anonymous-id');
       });
 
-      it('should respect .integrations["Keen IO"].traits', function(){
+      it('should respect .integrations["Keen IO"].traits', function() {
         test.maps('traits');
       });
 
-      it('should respect props.keen object', function(){
+      it('should respect props.keen object', function() {
         test.maps('keen-props');
       });
 
-      it('should add ip addon when .ipAddon is `true`', function(){
+      it('should add ip addon when .ipAddon is `true`', function() {
         test.maps('ip-addon');
       });
       
-      it('should add referrer addon when .referrerAddon is `true`', function(){
+      it('should add referrer addon when .referrerAddon is `true`', function() {
         test.maps('referrer-addon');
       });
 
-      it('should add user-agent addon when .uaAddon is `true`', function(){
+      it('should add user-agent addon when .uaAddon is `true`', function() {
         test.maps('user-agent-addon');
       });
 
-      it('should add url-parser addon when `.urlAddon` is `true`', function(){
+      it('should add url-parser addon when `.urlAddon` is `true`', function() {
         test.maps('url-addon');
       });
 
-      it('should not respect addons when the input is not included', function(){
+      it('should not respect addons when the input is not included', function() {
         test.maps('addons-without-input');
       });
 
-      it('should respect addon options', function(){
+      it('should respect addon options', function() {
         test.maps('addons');
       });
     });
   });
 
-  describe('.track()', function () {
-    it('should track correctly', function (done) {
+  describe('.track()', function() {
+    it('should track correctly', function(done) {
       test
         .set(settings)
         .track(helpers.track())
@@ -99,7 +97,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should error on invalid creds', function(done){
+    it('should error on invalid creds', function(done) {
       test
         .set({ writeKey: 'x' })
         .track(helpers.track())
@@ -107,8 +105,8 @@ describe('Keen IO', function () {
     });
   });
 
-  describe('.page()', function () {
-    it('should be able to track all pages', function (done) {
+  describe('.page()', function() {
+    it('should be able to track all pages', function(done) {
       var json = test.fixture('page-all');
       json.output['Loaded a Page'][0].keen.timestamp = new Date(json.output['Loaded a Page'][0].keen.timestamp);
       test
@@ -121,7 +119,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should be able to track named pages', function (done) {
+    it('should be able to track named pages', function(done) {
       var json = test.fixture('page-named');
       json.output['Viewed Home Page'][0].keen.timestamp = new Date(json.output['Viewed Home Page'][0].keen.timestamp);
       test
@@ -134,7 +132,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should be able to track categorized pages', function (done) {
+    it('should be able to track categorized pages', function(done) {
       var json = test.fixture('page-categorized');
       json.output['Viewed Docs Page'][0].keen.timestamp = new Date(json.output['Viewed Docs Page'][0].keen.timestamp);
       test
@@ -147,7 +145,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should error on invalid creds', function(done){
+    it('should error on invalid creds', function(done) {
       test
         .set({ writeKey: 'x' })
         .page(helpers.page())
@@ -155,8 +153,8 @@ describe('Keen IO', function () {
     });
   });
 
-  describe('.screen()', function () {
-    it('should be able to track all screens', function (done) {
+  describe('.screen()', function() {
+    it('should be able to track all screens', function(done) {
       var json = test.fixture('screen-all');
       json.output['Loaded a Screen'][0].keen.timestamp = new Date(json.output['Loaded a Screen'][0].keen.timestamp);
       test
@@ -169,7 +167,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should be able to track named screens', function (done) {
+    it('should be able to track named screens', function(done) {
       var json = test.fixture('screen-named');
       json.output['Viewed Home Screen'][0].keen.timestamp = new Date(json.output['Viewed Home Screen'][0].keen.timestamp);
       test
@@ -182,7 +180,7 @@ describe('Keen IO', function () {
         .end(done);
     });
 
-    it('should error on invalid creds', function(done){
+    it('should error on invalid creds', function(done) {
       test
         .set({ writeKey: 'x' })
         .screen(helpers.screen())
