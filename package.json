@@ -1,6 +1,6 @@
 {
   "name": "integration-keen-io",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "integration-version": "2016-09-22",
   "private": true,
   "description": "Keen IO server-side integration",
