@@ -27,7 +27,7 @@ fmt: install
 	@$(ESLINT) --fix .
 .PHONY: fmt
 
-test: install
+test: install lint
 	@TZ=UTC $(MOCHA) $(TESTS) \
 		--grep "$(GREP)" \
 		--inline-diffs \
