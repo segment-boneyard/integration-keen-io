@@ -1,4 +1,10 @@
 
+2.2.2 / 2017-03-03
+==================
+
+  * Bump to rebuild against newer integration-worker version
+  * Whoops, looks like version be wrong
+
 2.1.1 / 2017-03-03
 ==================
 
