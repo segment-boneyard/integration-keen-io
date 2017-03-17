@@ -5,7 +5,10 @@
     "type": "track",
     "timestamp": "2014",
     "properties": {
-      "url": "https://segment.io/docs"
+      "url": "https://segment.io/docs",
+      "payload.instanceId": null,
+      "payload.instanceSize": null,
+      "payload.taskDomain": "t2medium"
     },
     "context": {
       "userAgent": "user-agent",
@@ -26,6 +29,9 @@
       "user_agent": "user-agent",
       "page_url": "https://segment.io/docs",
       "url": "https://segment.io/docs",
+      "payload_instanceId": null,
+      "payload_instanceSize": null,
+      "payload_taskDomain": "t2medium",
       "traits": {
         "user-name": "user-name"
       },
