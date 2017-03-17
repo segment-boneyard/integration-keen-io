@@ -1,4 +1,9 @@
 
+2.2.2 / 2017-03-17
+==================
+
+  * Replace dots with underscores in property names
+
 2.2.2 / 2017-03-03
 ==================
 
