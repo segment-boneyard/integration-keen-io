@@ -8,7 +8,20 @@
       "url": "https://segment.io/docs",
       "payload.instanceId": null,
       "payload.instanceSize": null,
-      "payload.taskDomain": "t2medium"
+      "payload.taskDomain": "t2medium",
+      "Exception": [{
+        "e": {
+          "ClassName": "System.Data.SqlClient.SqlException",
+          "Data": {
+            "HelpLink.BaseHelpUrl": "http://go.microsoft.com/fwlink",
+            "HelpLink.EvtID": "8152",
+            "HelpLink.EvtSrc": "MSSQLServer",
+            "HelpLink.LinkId": "20476",
+            "HelpLink.ProdName": "Microsoft SQL Server",
+            "HelpLink.ProdVer": "12.00.5000"
+          }
+        }
+      }]
     },
     "context": {
       "userAgent": "user-agent",
@@ -32,6 +45,19 @@
       "payload_instanceId": null,
       "payload_instanceSize": null,
       "payload_taskDomain": "t2medium",
+      "Exception": [{
+        "e": {
+          "ClassName": "System.Data.SqlClient.SqlException",
+          "Data": {
+            "HelpLink_BaseHelpUrl": "http://go.microsoft.com/fwlink",
+            "HelpLink_EvtID": "8152",
+            "HelpLink_EvtSrc": "MSSQLServer",
+            "HelpLink_LinkId": "20476",
+            "HelpLink_ProdName": "Microsoft SQL Server",
+            "HelpLink_ProdVer": "12.00.5000"
+          }
+        }
+      }],
       "traits": {
         "user-name": "user-name"
       },
